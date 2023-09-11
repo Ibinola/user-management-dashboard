@@ -7,3 +7,11 @@ export interface Users {
   website: string,
   company: string,
 }
+
+
+export interface addUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+}

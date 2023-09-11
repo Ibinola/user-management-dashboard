@@ -4,7 +4,7 @@ import { UsersComponent } from './users.component';
 import {TableModule} from "primeng/table";
 // import { TablerIconsModule } from "@tabler/icons";
 import { TablerIconsModule } from 'angular-tabler-icons';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +14,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
     CommonModule,
     TableModule,
     TablerIconsModule,
+    ReactiveFormsModule,
   ]
 })
 export class UsersModule { }
