@@ -6,6 +6,7 @@ export interface Users {
   phone: number;
   website: string,
   company: string,
+  username: string,
 }
 
 

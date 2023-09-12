@@ -13,8 +13,8 @@ export class UsersComponent {
 
 
 users: Users[] = [];
-editedUser: Users[] = [];
 addNewUser: addUser[] = [];
+editedUser: addUser[] = [];
 
 constructor(private modalService: NgbModal, private usersService: UsersService) {}
 
@@ -57,17 +57,27 @@ deleteUser(userId: number) {
 }
 
 
-editUser(userId: number){
-  this.usersService.editUser(userId).subscribe()
+
+onEditSubmit(userForm: FormGroup, userId: number){
+  this.editedUser = userForm.value;
+  console.log(this.editedUser);
+  this.editUser(userId, this.editedUser);
+}
+
+editUser(userId: number, editedUser: addUser[]) {
+  this.usersService.editUser(userId, editedUser).subscribe({
+    next: (v) => {
+      console.log("User updated: " + v);
+  },
+  error: (e) => {
+    console.log(e);
+  }
+})
 }
 
 onSubmit(userForm: FormGroup){
   this.addNewUser = userForm.value;
   this.submitUserForm(this.addNewUser);
-}
-
-onEditSubmit(editedUser: FormGroup){
-
 }
 
 submitUserForm(addNewUser: addUser[]) {
@@ -88,13 +98,9 @@ openModal(content: any){
   this.clearForm();
 }
 
-openEditModal(userForm: any){
-  this.userForm.setValue({
-    firstName: userForm.value.firstName,
-    lastName: userForm.value.lastName,
-    username: userForm.value.username,
-    email: userForm.value.email,
-  });
+openEditModal(editUserModal: TemplateRef<any>, user: number) {
+  this.modalService.open(editUserModal);
+  console.log(user);
 }
 
 closeModal(){

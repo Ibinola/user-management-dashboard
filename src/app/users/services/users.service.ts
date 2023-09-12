@@ -20,8 +20,8 @@ export class UsersService {
     return this.http.delete<ResourceCreated>(`https://fakestoreapi.com/users/${userId}`)
   }
 
-  editUser(userId: number): Observable<ResourceCreated> {
-    return this.http.patch<ResourceCreated>(`https://fakestoreapi.com/users/${userId}`, userId)
+  editUser(userId: number, editedUser: addUser[]): Observable<ResourceCreated> {
+    return this.http.patch<ResourceCreated>(`https://fakestoreapi.com/users/${userId}`, editedUser);
   }
 
   addNewUser(addNewUser: addUser[]): Observable<addUser[]> {
