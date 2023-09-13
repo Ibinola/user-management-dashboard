@@ -3,6 +3,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule, FormControl, Validators, FormGroup} from '@angular/forms';
 import { addUser, Users } from './model/users';
 import { UsersService } from './services/users.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +17,7 @@ users: Users[] = [];
 addNewUser: addUser[] = [];
 editedUser: addUser[] = [];
 
-constructor(private modalService: NgbModal, private usersService: UsersService) {}
+constructor(private modalService: NgbModal, private usersService: UsersService, private notifierService: NotifierService) {}
 
 ngOnInit(): void {
   this.getUsers();
@@ -48,7 +49,8 @@ getUsers() {
 deleteUser(userId: number) {
   this.usersService.deleteUser(userId).subscribe({
     next: (v) => {
-      console.log("This user has been deleted " + v)
+      console.log("This user has been deleted ", v)
+      this.notifierService.notify("success", "This user was deleted successfully!")
     },
     error: (e) => {
       console.log(e)
@@ -67,7 +69,9 @@ onEditSubmit(userForm: FormGroup, userId: number){
 editUser(userId: number, editedUser: addUser[]) {
   this.usersService.editUser(userId, editedUser).subscribe({
     next: (v) => {
-      console.log("User updated: " + v);
+      console.log("User updated: ", v);
+      this.notifierService.notify("success", "This user had been updated!")
+      this.clearForm();
   },
   error: (e) => {
     console.log(e);
@@ -85,6 +89,7 @@ submitUserForm(addNewUser: addUser[]) {
     next: (v) => {
       // TODO: Add Notifier Service
       console.log("User added successfully", v);
+      this.notifierService.notify("success", "User added successfully!");
       this.clearForm();
     },
     error: (e) => {
