@@ -3,11 +3,7 @@
     <p class="fw-bold">Users({{ users.length }})</p>
     <button class="btn btn-sm btn-success" (click)="openModal(addUserModal)">
       Add User
-      <i-tabler
-        class="add-user-icon"
-        name="user-plus"
-        matListItemIcon
-      ></i-tabler>
+      <i-tabler class="add-user-icon" name="user-plus" matListItemIcon></i-tabler>
     </button>
   </div>
   <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
@@ -17,52 +13,32 @@
           <div class="flex justify-content-between align-items-center">
             First name
             <p-sortIcon field="firstName"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="firstName"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
+            <p-columnFilter type="text" field="firstName" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
         <th pSortableColumn="lastName">
           <div class="flex justify-content-between align-items-center">
             Last name
             <p-sortIcon field="lastName"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="lastName"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
+            <p-columnFilter type="text" field="lastName" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
         <th pSortableColumn="lastName">
           <div class="flex justify-content-between align-items-center">
             Username
             <p-sortIcon field="lastName"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="lastName"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
+            <p-columnFilter type="text" field="lastName" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
         <th pSortableColumn="email">
           <div class="flex justify-content-between align-items-center">
             Email
             <p-sortIcon field="email"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="email"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
+            <p-columnFilter type="text" field="email" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
         <th>
-            Roles
+          Roles
         </th>
         <th>Actions</th>
       </tr>
@@ -76,34 +52,20 @@
         <td>{{ user.role || 'Role Not Specified' }}</td>
         <td>
           <div class="dropdown" ngbDropdown>
-            <button
-              class="btn btn-outline-success btn-sm dropdown arrow-none"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              ngbDropdownToggle
-            >
-              <i-tabler
-                class="add-user-icon"
-                name="dots"
-                matListItemIcon
-              ></i-tabler>
+            <button class="btn btn-outline-success btn-sm dropdown arrow-none" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false" ngbDropdownToggle>
+              <i-tabler class="add-user-icon" name="dots" matListItemIcon></i-tabler>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
               <li>
-                <button
-                  class="dropdown-item"
-                  (click)="openEditModal(editUserModal, user.id)">
+                <button class="dropdown-item" (click)="openEditModal(editUserModal, user.id)">
                   <i class="ri-eye-fill align-bottom me-2 text-muted"></i>
                   Edit
                 </button>
               </li>
               <li class="dropdown-divider"></li>
               <li>
-                <button
-                  class="dropdown-item"
-                  (click)="deleteUser(user.id)"
-                >
+                <button class="dropdown-item" (click)="deleteUser(user.id)">
                   <i class="ri-eye-fill align-bottom me-2 text-muted"></i>
                   Delete
                 </button>
@@ -127,7 +89,8 @@
                       <div class="mb-3">
                         <span class="text-danger">*</span>
                         <label class="form-label">First name:</label>
-                        <input class="form-control" type="text" formControlName="firstName" [ngModel]="user.name.firstname" required />
+                        <input class="form-control" type="text" formControlName="firstName"
+                          [ngModel]="user.name.firstname" required />
                       </div>
                     </div>
                   </div>
@@ -138,7 +101,8 @@
                       <div class="mb-3">
                         <span class="text-danger">*</span>
                         <label class="form-label">Last name:</label>
-                        <input class="form-control" type="text" formControlName="lastName" [ngModel]="user.name.lastname" required />
+                        <input class="form-control" type="text" formControlName="lastName"
+                          [ngModel]="user.name.lastname" required />
                       </div>
                     </div>
                   </div>
@@ -149,7 +113,8 @@
                       <div class="mb-3">
                         <span class="text-danger">*</span>
                         <label class="form-label">Username:</label>
-                        <input class="form-control" type="text" formControlName="username" [ngModel]="user.username" required />
+                        <input class="form-control" type="text" formControlName="username" [ngModel]="user.username"
+                          required />
                       </div>
                     </div>
                   </div>
@@ -160,7 +125,8 @@
                       <div class="mb-3">
                         <span class="text-danger">*</span>
                         <label class="form-label">Email:</label>
-                        <input class="form-control" type="email" formControlName="email" [ngModel]="user.email" required />
+                        <input class="form-control" type="email" formControlName="email" [ngModel]="user.email"
+                          required />
                       </div>
                     </div>
                   </div>
@@ -177,7 +143,12 @@
         </div>
       </ng-template>
     </ng-template>
+
   </p-table>
+  <div class="spinner-container" *ngIf="processingUsers">
+    <mat-progress-spinner color="accent" mode="indeterminate" diameter="50">
+    </mat-progress-spinner>
+  </div>
 </div>
 
 <ng-template #addUserModal let-modal>
@@ -205,7 +176,7 @@
                 <div class="mb-3">
                   <span class="text-danger">*</span>
                   <label class="form-label">Last name:</label>
-                  <input class="form-control" type="text" formControlName="lastName"  required />
+                  <input class="form-control" type="text" formControlName="lastName" required />
                 </div>
               </div>
             </div>
@@ -227,7 +198,7 @@
                 <div class="mb-3">
                   <span class="text-danger">*</span>
                   <label class="form-label">Email:</label>
-                  <input class="form-control" type="email" formControlName="email"  required />
+                  <input class="form-control" type="email" formControlName="email" required />
                 </div>
               </div>
             </div>
@@ -243,6 +214,3 @@
     </form>
   </div>
 </ng-template>
-
-
-

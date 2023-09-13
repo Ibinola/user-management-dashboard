@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users.component';
 import {TableModule} from "primeng/table";
-// import { TablerIconsModule } from "@tabler/icons";
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TableModule,
     TablerIconsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class UsersModule { }

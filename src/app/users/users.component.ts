@@ -16,6 +16,7 @@ export class UsersComponent {
 users: Users[] = [];
 addNewUser: addUser[] = [];
 editedUser: addUser[] = [];
+processingUsers: boolean = false;
 
 constructor(private modalService: NgbModal, private usersService: UsersService, private notifierService: NotifierService) {}
 
@@ -35,13 +36,15 @@ clearForm(){
 }
 
 getUsers() {
+  this.processingUsers = true;
   this.usersService.getUsers().subscribe({
     next: (v) => {
+      this.processingUsers = false;
       this.users = v;
-      console.log(v)
     },
     error: (e) => {
-      console.log("this is the error " + e)
+      this.notifierService.notify("error", "Error fetching Users!");
+      this.processingUsers = false;
     }
   })
 }
@@ -49,11 +52,10 @@ getUsers() {
 deleteUser(userId: number) {
   this.usersService.deleteUser(userId).subscribe({
     next: (v) => {
-      console.log("This user has been deleted ", v)
       this.notifierService.notify("success", "This user was deleted successfully!")
     },
-    error: (e) => {
-      console.log(e)
+    error: (error) => {
+      console.error("error", "User cannot be deleted!" )
     }
   })
 }

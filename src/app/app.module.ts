@@ -10,6 +10,8 @@ import * as TablerIcons from "angular-tabler-icons/icons";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { NotifierModule } from 'angular-notifier';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { NotifierModule } from 'angular-notifier';
     ReactiveFormsModule,
     TablerIconsModule.pick(TablerIcons),
     HttpClientModule,
+    MatProgressSpinnerModule,
     NotifierModule.withConfig({
       position: {
 
