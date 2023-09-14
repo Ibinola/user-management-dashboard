@@ -17,6 +17,7 @@ users: Users[] = [];
 addNewUser: addUser[] = [];
 editedUser: addUser[] = [];
 processingUsers: boolean = false;
+page: number = 1;
 
 constructor(private modalService: NgbModal, private usersService: UsersService, private notifierService: NotifierService) {}
 

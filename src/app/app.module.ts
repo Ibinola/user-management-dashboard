@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { NotifierModule } from 'angular-notifier';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {NgxPaginationModule} from 'ngx-pagination'
 
 
 
@@ -28,6 +29,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     TablerIconsModule.pick(TablerIcons),
     HttpClientModule,
     MatProgressSpinnerModule,
+    NgxPaginationModule,
     NotifierModule.withConfig({
       position: {
 

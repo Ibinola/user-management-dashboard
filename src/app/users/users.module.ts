@@ -5,7 +5,7 @@ import {TableModule} from "primeng/table";
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {NgxPaginationModule} from 'ngx-pagination'
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     TablerIconsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    NgxPaginationModule,
   ]
 })
 export class UsersModule { }

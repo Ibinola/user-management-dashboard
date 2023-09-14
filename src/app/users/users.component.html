@@ -1,4 +1,4 @@
-<div class="card" style="height: 500px">
+<div class="card">
   <div class="d-flex justify-content-between mb-3 p-3 border-bottom">
     <p class="fw-bold">Users({{ users.length }})</p>
     <button class="btn btn-sm btn-success" (click)="openModal(addUserModal)">
@@ -6,7 +6,7 @@
       <i-tabler class="add-user-icon" name="user-plus" matListItemIcon></i-tabler>
     </button>
   </div>
-  <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="users | paginate: {itemsPerPage: 5, currentPage: page}" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="firstName">
@@ -150,6 +150,11 @@
     </mat-progress-spinner>
   </div>
 </div>
+
+<div class="mt-10">
+  <pagination-controls (pageChange)="page = $event" [maxSize]="5" [directionLinks]=true></pagination-controls>
+</div>
+
 
 <ng-template #addUserModal let-modal>
   <div class="modal-body">
