@@ -11,7 +11,6 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  //TODO: can it be structured better
   getUsers(): Observable<Users[]> {
     return this.http.get<Users[]>("https://fakestoreapi.com/users");
     }

@@ -50,7 +50,7 @@ This is an Angular application that implements a User Management Dashboard. It a
 
 To access the deployed application, please follow the link:
 
-- [Deployed Application](https://yourapp.netlify.app)
+- [Deployed Application](https://user-management-dashboard.vercel.app/)
 
 ## Getting Started
 
